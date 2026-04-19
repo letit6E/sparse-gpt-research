@@ -1,0 +1,75 @@
+model=moc
+projection_mode=sparse_downproj
+device=cuda
+
+=== Overall Top Ops ===
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg       CPU Mem  Self CPU Mem      CUDA Mem  Self CUDA Mem    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                         SparseDownProjFunctionBackward         0.15%       2.921ms         0.53%      10.108ms     421.168us        1.116s        30.54%        1.116s      46.496ms           0 b           0 b      96.00 Mb           0 b            24  
+                    _sparse_downproj_grad_weight_kernel         0.00%       0.000us         0.00%       0.000us       0.000us     610.844ms        16.72%     610.844ms      25.452ms           0 b           0 b           0 b           0 b            24  
+                 moc_sparse_downproj_grad_weight_triton         0.00%       0.000us         0.00%       0.000us       0.000us     610.844ms        16.72%     610.844ms      25.452ms           0 b           0 b           0 b           0 b            24  
+                         _sparse_downproj_grad_z_kernel         0.00%       0.000us         0.00%       0.000us       0.000us     504.916ms        13.82%     504.916ms      21.038ms           0 b           0 b           0 b           0 b            24  
+                      moc_sparse_downproj_grad_z_triton         0.00%       0.000us         0.00%       0.000us       0.000us     504.916ms        13.82%     504.916ms      21.038ms           0 b           0 b           0 b           0 b            24  
+                                 profile_moc_train_step         0.00%       0.000us         0.00%       0.000us       0.000us     399.927ms        10.95%     399.927ms     133.309ms           0 b           0 b           0 b           0 b             3  
+                                 SparseDownProjFunction         0.12%       2.356ms        13.47%     258.399ms      10.767ms     252.757ms         6.92%     253.454ms      10.561ms           0 b           0 b      96.00 Mb     -12.00 Kb            24  
+                        _sparse_downproj_forward_kernel         0.00%       0.000us         0.00%       0.000us       0.000us     252.757ms         6.92%     252.757ms      10.532ms           0 b           0 b           0 b           0 b            24  
+                     moc_sparse_downproj_forward_triton         0.00%       0.000us         0.00%       0.000us       0.000us     252.757ms         6.92%     252.757ms      10.532ms           0 b           0 b           0 b           0 b            24  
+                                               aten::mm         0.60%      11.441ms         0.88%      16.957ms      38.452us     209.836ms         5.74%     209.836ms     475.819us           0 b           0 b       2.43 Gb       2.43 Gb           441  
+                                  volta_sgemm_128x64_nn         0.00%       0.000us         0.00%       0.000us       0.000us      73.921ms         2.02%      73.921ms     502.862us           0 b           0 b           0 b           0 b           147  
+                              Optimizer.step#AdamW.step         0.00%       0.000us         0.00%       0.000us       0.000us      54.579ms         1.49%      54.579ms      18.193ms           0 b           0 b           0 b           0 b             3  
+                    aten::_efficient_attention_backward         0.05%       1.014ms         0.24%       4.583ms     190.970us      42.549ms         1.16%      44.929ms       1.872ms           0 b           0 b     288.00 Mb    -195.09 Mb            24  
+fmha_cutlassB_f32_aligned_64x64_k64_sm75(PyTorchMemE...         0.00%       0.000us         0.00%       0.000us       0.000us      42.549ms         1.16%      42.549ms       1.773ms           0 b           0 b           0 b           0 b            24  
+                                  volta_sgemm_128x64_tn         0.00%       0.000us         0.00%       0.000us       0.000us      37.650ms         1.03%      37.650ms     261.456us           0 b           0 b           0 b           0 b           144  
+                                   volta_sgemm_64x64_nt         0.00%       0.000us         0.00%       0.000us       0.000us      33.881ms         0.93%      33.881ms      11.294ms           0 b           0 b           0 b           0 b             3  
+                                 volta_sgemm_128x128_tn         0.00%       0.000us         0.00%       0.000us       0.000us      32.564ms         0.89%      32.564ms      10.855ms           0 b           0 b           0 b           0 b             3  
+                                  volta_sgemm_128x64_nt         0.00%       0.000us         0.00%       0.000us       0.000us      31.481ms         0.86%      31.481ms     218.621us           0 b           0 b           0 b           0 b           144  
+                                              aten::mul         0.55%      10.598ms         0.79%      15.165ms      20.059us      26.271ms         0.72%      26.271ms      34.750us           0 b           0 b       2.49 Gb       2.49 Gb           756  
+                                moc_topk_forward_sparse         0.00%       0.000us         0.00%       0.000us       0.000us      20.413ms         0.56%      20.413ms     850.557us           0 b           0 b           0 b           0 b            24  
+                                             aten::topk         0.13%       2.579ms         0.28%       5.336ms     222.338us      17.646ms         0.48%      17.646ms     735.232us           0 b           0 b     144.00 Mb     144.00 Mb            24  
+void at::native::elementwise_kernel<128, 2, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us      14.654ms         0.40%      14.654ms      37.005us           0 b           0 b           0 b           0 b           396  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us      13.636ms         0.37%      13.636ms      51.072us           0 b           0 b           0 b           0 b           267  
+                       aten::_log_softmax_backward_data         0.00%      55.974us         0.00%      85.045us      28.348us      13.253ms         0.36%      13.253ms       4.418ms           0 b           0 b     750.02 Mb     750.02 Mb             3  
+void at::native::(anonymous namespace)::cunn_SoftMax...         0.00%       0.000us         0.00%       0.000us       0.000us      13.253ms         0.36%      13.253ms       4.418ms           0 b           0 b           0 b           0 b             3  
+                                     aten::_log_softmax         0.00%      67.356us         0.00%      92.716us      30.905us      12.437ms         0.34%      12.437ms       4.146ms           0 b           0 b     750.02 Mb     750.02 Mb             3  
+void at::native::(anonymous namespace)::cunn_SoftMax...         0.00%       0.000us         0.00%       0.000us       0.000us      12.437ms         0.34%      12.437ms       4.146ms           0 b           0 b           0 b           0 b             3  
+                                             aten::add_         0.10%       2.013ms         0.17%       3.224ms       7.262us      11.325ms         0.31%      11.325ms      25.506us           0 b           0 b           0 b           0 b           444  
+                                    aten::_foreach_mul_         0.03%     480.163us         0.04%     694.186us     115.698us      11.215ms         0.31%      11.215ms       1.869ms           0 b           0 b           0 b           0 b             6  
+void at::native::(anonymous namespace)::multi_tensor...         0.00%       0.000us         0.00%       0.000us       0.000us      11.215ms         0.31%      11.215ms     623.080us           0 b           0 b           0 b           0 b            18  
+                                aten::_foreach_addcdiv_         0.02%     323.122us         0.02%     397.666us     132.555us      10.406ms         0.28%      10.406ms       3.469ms           0 b           0 b           0 b           0 b             3  
+void at::native::(anonymous namespace)::multi_tensor...         0.00%       0.000us         0.00%       0.000us       0.000us      10.406ms         0.28%      10.406ms       1.156ms           0 b           0 b           0 b           0 b             9  
+                     aten::_efficient_attention_forward         0.03%     576.829us         0.07%       1.321ms      55.037us       9.824ms         0.27%       9.824ms     409.328us         384 b           0 b      97.50 Mb           0 b            24  
+fmha_cutlassF_f32_aligned_64x64_rf_sm75(PyTorchMemEf...         0.00%       0.000us         0.00%       0.000us       0.000us       9.824ms         0.27%       9.824ms     409.328us           0 b           0 b           0 b           0 b            24  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       9.644ms         0.26%       9.644ms      38.268us           0 b           0 b           0 b           0 b           252  
+                                            aten::fill_         0.09%       1.759ms         0.18%       3.423ms      12.011us       9.106ms         0.25%       9.106ms      31.950us           0 b           0 b           0 b           0 b           285  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       8.265ms         0.23%       8.265ms      44.438us           0 b           0 b           0 b           0 b           186  
+                                   aten::_foreach_lerp_         0.00%      95.159us         0.01%     148.805us      49.602us       8.038ms         0.22%       8.038ms       2.679ms           0 b           0 b           0 b           0 b             3  
+void at::native::(anonymous namespace)::multi_tensor...         0.00%       0.000us         0.00%       0.000us       0.000us       8.038ms         0.22%       8.038ms     893.077us           0 b           0 b           0 b           0 b             9  
+                                aten::_foreach_addcmul_         0.02%     312.418us         0.02%     384.891us     128.297us       8.022ms         0.22%       8.022ms       2.674ms           0 b           0 b           0 b           0 b             3  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 1.919s
+Self CUDA time total: 3.654s
+
+
+=== Selected MoC / TopK / GEMM Ops ===
+name                                                            self_cpu_us   cpu_total_us   self_cuda_us  cuda_total_us    count
+---------------------------------------------------------------------------------------------------------------------------------
+profile_moc_train_step                                             126367.6       447877.6            0.0            0.0        3
+profile_moc_train_step                                                  0.0            0.0            0.0            0.0        3
+aten::bmm                                                             169.4          202.4            0.0            0.0        3
+aten::mm                                                            11440.9        16957.4            0.0            0.0      441
+moc_topk_forward_sparse                                              2285.3         9625.2            0.0            0.0       24
+aten::topk                                                           2578.9         5336.1            0.0            0.0       24
+aten::gather                                                          705.8          948.3            0.0            0.0       24
+moc_topk_forward_sparse                                                 0.0            0.0            0.0            0.0       24
+moc_sparse_downproj_forward_triton                                   5127.2         6197.9            0.0            0.0       24
+moc_sparse_downproj_forward_triton                                      0.0            0.0            0.0            0.0       24
+moc_sparse_downproj_grad_z_triton                                    3527.4         3746.4            0.0            0.0       24
+moc_sparse_downproj_grad_weight_triton                               1754.5         1971.4            0.0            0.0       24
+moc_topk_backward_sparse_triton                                      3003.3         3517.9            0.0            0.0       24
+moc_sparse_downproj_grad_z_triton                                       0.0            0.0            0.0            0.0       24
+moc_sparse_downproj_grad_weight_triton                                  0.0            0.0            0.0            0.0       24
+moc_topk_backward_sparse_triton                                         0.0            0.0            0.0            0.0       24
+
+trace_file=profiling_artifacts/hf_llama/moc_trace.json
+selected_events_json=profiling_artifacts/hf_llama/moc_selected_events.json
