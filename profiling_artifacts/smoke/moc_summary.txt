@@ -1,0 +1,69 @@
+model=moc
+projection_mode=sparse_downproj
+device=cpu
+
+=== Overall Top Ops ===
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg       CPU Mem  Self CPU Mem    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                 profile_moc_train_step        20.08%       1.135ms        99.73%       5.636ms       5.636ms     190.75 KB    -344.14 KB             1  
+                                             aten::sqrt         7.39%     417.750us         7.39%     417.750us      34.813us     189.75 KB     189.75 KB            12  
+                              Optimizer.step#AdamW.step         6.04%     341.420us        19.75%       1.116ms       1.116ms           0 B    -379.50 KB             1  
+                                              aten::bmm         4.04%     228.464us         8.88%     501.664us      29.510us      25.00 KB      25.00 KB            17  
+                                           aten::select         4.01%     226.840us         5.10%     288.042us       0.687us           0 B           0 B           419  
+                  moc_sparse_downproj_backward_fallback         3.54%     199.918us        17.63%     996.038us     996.038us     200.00 KB    -904.00 KB             1  
+                                     aten::scatter_add_         3.19%     180.124us         3.20%     180.832us      22.604us           0 B           0 B             8  
+                                             aten::topk         2.41%     136.042us         2.41%     136.042us     136.042us      24.00 KB      24.00 KB             1  
+                                              aten::mul         2.40%     135.670us         2.76%     156.003us       2.889us       1.05 MB       1.05 MB            54  
+                                       aten::as_strided         2.19%     123.984us         2.19%     123.984us       0.179us           0 B           0 B           693  
+      aten::_scaled_dot_product_flash_attention_for_cpu         2.02%     114.043us         2.18%     123.041us     123.041us      17.00 KB     -50.00 KB             1  
+                                            aten::copy_         1.88%     106.247us         1.90%     107.247us       0.984us           0 B     -42.19 KB           109  
+                   moc_sparse_downproj_forward_fallback         1.82%     102.787us        10.19%     575.790us     575.790us     112.00 KB    -464.00 KB             1  
+                                               aten::mm         1.82%     102.674us         1.86%     105.208us       5.010us     397.00 KB     397.00 KB            21  
+                                           aten::einsum         1.77%     100.202us        13.27%     750.122us      46.883us      24.00 KB           0 B            16  
+                                             aten::view         1.58%      89.081us         1.58%      89.081us       0.590us           0 B           0 B           151  
+                                            aten::slice         1.55%      87.382us         1.81%     102.544us       1.282us           0 B           0 B            80  
+aten::_scaled_dot_product_flash_attention_for_cpu_ba...         1.51%      85.126us         1.86%     105.250us     105.250us      48.00 KB     -64.12 KB             1  
+                                          aten::permute         1.34%      75.508us         1.62%      91.505us       1.144us           0 B           0 B            80  
+                                     aten::index_select         1.33%      75.167us         1.90%     107.502us       6.324us       1.02 MB       1.02 MB            17  
+                                         aten::_to_copy         1.28%      72.114us         2.58%     146.080us       1.849us         440 B           0 B            79  
+                                     aten::_log_softmax         1.16%      65.416us         1.16%      65.416us      65.416us      14.50 KB      14.50 KB             1  
+                                             aten::add_         1.04%      58.871us         1.83%     103.458us       3.043us           0 B         -96 B            34  
+                                              aten::div         1.01%      56.953us         1.86%     105.082us       7.005us     237.75 KB     237.69 KB            15  
+                                             aten::mul_         1.00%      56.668us         1.70%      96.208us       4.009us           0 B         -96 B            24  
+                                        aten::transpose         1.00%      56.252us         1.34%      75.915us       1.224us           0 B           0 B            62  
+                                aten::nll_loss_backward         0.91%      51.334us         0.93%      52.375us      52.375us      14.50 KB      14.50 KB             1  
+                      moc_topk_backward_sparse_fallback         0.81%      45.999us         1.49%      84.249us      84.249us      80.00 KB     -56.00 KB             1  
+                                          aten::reshape         0.78%      43.955us         2.01%     113.624us       1.148us      32.00 KB           0 B            99  
+                       aten::_log_softmax_backward_data         0.71%      40.000us         0.71%      40.000us      40.000us      14.50 KB      14.50 KB             1  
+                                        aten::unsqueeze         0.69%      39.082us         0.84%      47.710us       1.256us           0 B           0 B            38  
+                                    aten::empty_strided         0.63%      35.509us         0.63%      35.509us       0.433us      48.43 KB      48.43 KB            82  
+                                               aten::to         0.58%      32.929us         3.17%     179.009us       1.467us         440 B           0 B           122  
+                         SparseDownProjFunctionBackward         0.57%      32.332us        18.60%       1.051ms       1.051ms      40.00 KB    -192.00 KB             1  
+                                              aten::cat         0.54%      30.416us         0.69%      39.042us       5.577us      67.00 KB      67.00 KB             7  
+                                                aten::t         0.52%      29.630us         1.22%      69.005us       1.816us           0 B           0 B            38  
+                                              aten::add         0.51%      28.794us         0.60%      33.795us       3.072us     105.00 KB     104.99 KB            11  
+                                         aten::addcdiv_         0.49%      27.791us         0.49%      27.791us       2.316us           0 B           0 B            12  
+                                            aten::lerp_         0.49%      27.498us         0.49%      27.498us       2.292us           0 B           0 B            12  
+                                            aten::empty         0.49%      27.419us         0.49%      27.419us       0.527us     516.84 KB     516.84 KB            52  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 5.651ms
+
+
+=== Selected MoC / TopK / GEMM Ops ===
+name                                                            self_cpu_us   cpu_total_us   self_cuda_us  cuda_total_us    count
+---------------------------------------------------------------------------------------------------------------------------------
+profile_moc_train_step                                               1134.9         5635.8            0.0            0.0        1
+aten::bmm                                                             228.5          501.7            0.0            0.0       17
+moc_sparse_downproj_backward_fallback                                 199.9          996.0            0.0            0.0        1
+aten::scatter_add_                                                    180.1          180.8            0.0            0.0        8
+aten::topk                                                            136.0          136.0            0.0            0.0        1
+moc_sparse_downproj_forward_fallback                                  102.8          575.8            0.0            0.0        1
+aten::mm                                                              102.7          105.2            0.0            0.0       21
+moc_topk_backward_sparse_fallback                                      46.0           84.2            0.0            0.0        1
+moc_topk_forward_sparse                                                22.8          170.4            0.0            0.0        1
+aten::scatter_                                                          7.9            8.0            0.0            0.0        2
+aten::gather                                                            4.9            5.0            0.0            0.0        1
+
+trace_file=profiling_artifacts/smoke/moc_trace.json
+selected_events_json=profiling_artifacts/smoke/moc_selected_events.json
