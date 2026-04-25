@@ -1,0 +1,90 @@
+[
+  {
+    "key": "profile_moc_train_step",
+    "cpu_time_total_us": 5635.772,
+    "self_cpu_time_total_us": 1134.9480000000012,
+    "cuda_time_total_us": 0.0,
+    "self_cuda_time_total_us": 0.0,
+    "count": 1
+  },
+  {
+    "key": "aten::bmm",
+    "cpu_time_total_us": 501.6640000000003,
+    "self_cpu_time_total_us": 228.46399999999528,
+    "cuda_time_total_us": 0.0,
+    "self_cuda_time_total_us": 0.0,
+    "count": 17
+  },
+  {
+    "key": "moc_sparse_downproj_backward_fallback",
+    "cpu_time_total_us": 996.038,
+    "self_cpu_time_total_us": 199.91800000000012,
+    "cuda_time_total_us": 0.0,
+    "self_cuda_time_total_us": 0.0,
+    "count": 1
+  },
+  {
+    "key": "aten::scatter_add_",
+    "cpu_time_total_us": 180.83200000000033,
+    "self_cpu_time_total_us": 180.12399999999934,
+    "cuda_time_total_us": 0.0,
+    "self_cuda_time_total_us": 0.0,
+    "count": 8
+  },
+  {
+    "key": "aten::topk",
+    "cpu_time_total_us": 136.04200000000014,
+    "self_cpu_time_total_us": 136.04200000000014,
+    "cuda_time_total_us": 0.0,
+    "self_cuda_time_total_us": 0.0,
+    "count": 1
+  },
+  {
+    "key": "moc_sparse_downproj_forward_fallback",
+    "cpu_time_total_us": 575.79,
+    "self_cpu_time_total_us": 102.78699999999981,
+    "cuda_time_total_us": 0.0,
+    "self_cuda_time_total_us": 0.0,
+    "count": 1
+  },
+  {
+    "key": "aten::mm",
+    "cpu_time_total_us": 105.20800000000202,
+    "self_cpu_time_total_us": 102.67400000000384,
+    "cuda_time_total_us": 0.0,
+    "self_cuda_time_total_us": 0.0,
+    "count": 21
+  },
+  {
+    "key": "moc_topk_backward_sparse_fallback",
+    "cpu_time_total_us": 84.24900000000025,
+    "self_cpu_time_total_us": 45.999000000000706,
+    "cuda_time_total_us": 0.0,
+    "self_cuda_time_total_us": 0.0,
+    "count": 1
+  },
+  {
+    "key": "moc_topk_forward_sparse",
+    "cpu_time_total_us": 170.41599999999994,
+    "self_cpu_time_total_us": 22.78999999999951,
+    "cuda_time_total_us": 0.0,
+    "self_cuda_time_total_us": 0.0,
+    "count": 1
+  },
+  {
+    "key": "aten::scatter_",
+    "cpu_time_total_us": 8.041999999999916,
+    "self_cpu_time_total_us": 7.876000000000204,
+    "cuda_time_total_us": 0.0,
+    "self_cuda_time_total_us": 0.0,
+    "count": 2
+  },
+  {
+    "key": "aten::gather",
+    "cpu_time_total_us": 5.0,
+    "self_cpu_time_total_us": 4.91599999999994,
+    "cuda_time_total_us": 0.0,
+    "self_cuda_time_total_us": 0.0,
+    "count": 1
+  }
+]
